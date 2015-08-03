@@ -7,6 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
   </head>
   <body>
     <div id="content"></div>
@@ -27,7 +28,9 @@
         render: function(){
           return (
             <div className="CommentList">
-              Hello, this is the CommentList.
+              <Comment author="J. Wheezy"> this is our first comment!</Comment>
+              <Comment author="A. User"> this is another comment!!</Comment>
+
             </div>
           );
         }
@@ -42,6 +45,21 @@
           );
         }
       });
+
+      var Comment = React.createClass({
+        render: function(){
+          return (
+            <div className="comment">
+              <h2 className="commentAuthor">
+                {this.props.author}
+              </h2>
+                {marked(this.props.children.toString())}
+            </div>
+          );
+        }
+      });
+
+
 
 
       React.render(
